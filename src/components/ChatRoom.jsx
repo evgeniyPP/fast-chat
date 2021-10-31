@@ -4,6 +4,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import ChatMessage from './ChatMessage';
 import { firebase, auth, firestore } from '../firebase';
+import { t } from '../locale/index';
 
 function ChatRoom() {
   const { id: roomId } = useParams();
@@ -18,6 +19,10 @@ function ChatRoom() {
 
   const sendMessage = async e => {
     e.preventDefault();
+
+    if (!formValue.trim()) {
+      return;
+    }
 
     const { uid, photoURL } = auth.currentUser;
 
@@ -43,7 +48,7 @@ function ChatRoom() {
 
       <form onSubmit={sendMessage}>
         <input value={formValue} onChange={e => setFormValue(e.target.value)} />
-        <button type="submit">Send</button>
+        <button type="submit">{t('Send')}</button>
       </form>
     </>
   );

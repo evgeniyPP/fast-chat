@@ -1,5 +1,6 @@
 import 'firebase/auth';
 import { firebase, auth } from '../firebase';
+import { t } from '../locale/index';
 
 function SignIn() {
   const signInWithGoogle = () => {
@@ -7,7 +8,7 @@ function SignIn() {
     auth.signInWithPopup(provider);
   };
 
-  return <button onClick={signInWithGoogle}>Sign in with Google</button>;
+  return <button onClick={signInWithGoogle}>{t('Sign in with Google')}</button>;
 }
 
 export default SignIn;

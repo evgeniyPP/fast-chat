@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
+import Langs from './components/Langs';
 import ChatRoom from './components/ChatRoom';
 import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
 import GetRoom from './components/GetRoom';
 import { auth } from './firebase';
+import { t } from './locale/index';
 import './App.css';
 
 function App() {
@@ -16,8 +18,9 @@ function App() {
       <div className="App">
         <header className="App-header">
           <h1>
-            <Link to="/">Fast Chat</Link>
+            <Link to="/">{t('Fast Chat')}</Link>
           </h1>
+          <Langs />
           <SignOut />
         </header>
 

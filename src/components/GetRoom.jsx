@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router';
 import { firestore } from '../firebase';
+import { t } from '../locale/index';
 
 function GetRoom() {
   const history = useHistory();
@@ -11,7 +12,7 @@ function GetRoom() {
     history.push(`/${id}`);
   };
 
-  return <button onClick={getRoom}>Get a new room</button>;
+  return <button onClick={getRoom}>{t('Get a new room')}</button>;
 }
 
 export default GetRoom;
