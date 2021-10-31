@@ -1,14 +1,16 @@
 import { useRef, useState } from 'react';
+import { useParams } from 'react-router';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import ChatMessage from './ChatMessage';
 import { firebase, auth, firestore } from '../firebase';
 
 function ChatRoom() {
+  const { id: roomId } = useParams();
   const dummy = useRef();
 
   const messagesRef = firestore.collection('messages');
-  const query = messagesRef.orderBy('createdAt').limit(25);
+  const query = messagesRef.where('roomId', '==', roomId).orderBy('createdAt').limit(25);
 
   const [messages] = useCollectionData(query, { idField: 'id' });
 
@@ -23,7 +25,8 @@ function ChatRoom() {
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
-      photoURL
+      photoURL,
+      roomId
     });
 
     setFormValue('');

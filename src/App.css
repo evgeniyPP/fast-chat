@@ -25,6 +25,11 @@ body {
   box-sizing: border-box;
 }
 
+.App header h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .App section {
   display: flex;
   flex-direction: column;
